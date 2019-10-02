@@ -41,7 +41,7 @@ import java.util.Map;
  * @author Craig R. McClanahan
  */
 
-public interface Scope extends Map {
+public interface Scope extends Map<String, Object> {
 
 
     // ------------------------------------------------------------ Map Methods

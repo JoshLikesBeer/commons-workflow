@@ -64,7 +64,7 @@ public class BaseDescriptor implements Descriptor {
      * @param xpath The XPath reference expression
      * @param type The expected class of this object
      */
-    public BaseDescriptor(String xpath, Class type) {
+    public BaseDescriptor(String xpath, Class<Object> type) {
 
         this(null, null, xpath, type);
 
@@ -91,7 +91,7 @@ public class BaseDescriptor implements Descriptor {
      * @param scope The object scope
      * @param type The expected class of this object
      */
-    public BaseDescriptor(String name, String scope, Class type) {
+    public BaseDescriptor(String name, String scope, Class<Object> type) {
 
         this(name, scope, null, type);
 
@@ -107,7 +107,7 @@ public class BaseDescriptor implements Descriptor {
      * @param type The expected class
      */
     public BaseDescriptor(String name, String scope,
-                          String xpath, Class type) {
+                          String xpath, Class<Object> type) {
 
         super();
         setName(name);
@@ -136,7 +136,7 @@ public class BaseDescriptor implements Descriptor {
     /**
      * The optional Java class expected by this Descriptor.
      */
-    protected Class type = null;
+    protected Class<Object> type = null;
 
 
     /**
@@ -197,7 +197,7 @@ public class BaseDescriptor implements Descriptor {
     /**
      * Return the optional Java class expected by this Descriptor.
      */
-    public Class getType() {
+    public Class<Object> getType() {
 
         return (this.type);
 
@@ -209,7 +209,7 @@ public class BaseDescriptor implements Descriptor {
      *
      * @param type The new expected type
      */
-    public void setType(Class type) {
+    public void setType(Class<Object> type) {
 
         this.type = type;
 

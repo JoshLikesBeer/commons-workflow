@@ -17,8 +17,6 @@
 package org.apache.commons.workflow.base;
 
 import java.util.HashMap;
-import java.util.Map;
-import org.apache.commons.workflow.Scope;
 
 /**
  * Bean for JPath testing.
@@ -36,15 +34,15 @@ public class Employee {
         setLastName(lastName);
     }
 
-    private HashMap addresses = new HashMap();
+    private HashMap<String, Address> addresses = new HashMap<>();
     /*
     private Scope addresses = new BaseScope();
     */
     public void addAddress(String key, Address address) {
         addresses.put(key, address);
     }
-    public HashMap getAddresses() {
-        return ((HashMap) addresses);
+    public HashMap<String, Address> getAddresses() {
+        return addresses;
     }
     public void removeAddress(String key) {
         addresses.remove(key);

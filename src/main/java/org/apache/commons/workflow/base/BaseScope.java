@@ -65,7 +65,7 @@ public class BaseScope implements Scope {
     /**
      * The HashMap that contains our registered keys and beans.
      */
-    protected HashMap map = new HashMap();
+    protected HashMap<String, Object> map = new HashMap<>();
 
 
     /**
@@ -116,7 +116,7 @@ public class BaseScope implements Scope {
     /**
      * Return a set view of the mappings contained in this map.
      */
-    public Set entrySet() {
+    public Set<Map.Entry<String, Object>> entrySet() {
 
         return (map.entrySet());
 
@@ -182,26 +182,11 @@ public class BaseScope implements Scope {
     /**
      * Return a set view of the keys contained in this map.
      */
-    public Set keySet() {
+    public Set<String> keySet() {
 
         return (map.keySet());
 
     }
-
-
-    /**
-     * Add or replace the bean associated with the specified key.
-     *
-     * @param key Key with which the new value should be associated
-     *  (cannot be null)
-     * @param bean Bean to be associated with this key (cannot be null)
-     */
-    public Object put(Object key, Object bean) {
-
-        return (put((String) key, bean));
-
-    }
-
 
     /**
      * Add the specified bean, associated with the specified key, to this
@@ -247,11 +232,11 @@ public class BaseScope implements Scope {
      *
      * @param in Map whose contents are to be added
      */
-    public void putAll(Map in) {
+    public void putAll(Map<? extends String, ? extends Object> in) {
 
-        Iterator keys = in.keySet().iterator();
+        Iterator<? extends String> keys = in.keySet().iterator();
         while (keys.hasNext()) {
-            Object key = keys.next();
+            String key = keys.next();
             put(key, in.get(key));
         }
 
@@ -307,7 +292,7 @@ public class BaseScope implements Scope {
     /**
      * Return a Collection view of the values contained in this map.
      */
-    public Collection values() {
+    public Collection<Object> values() {
 
         return (map.values());
 

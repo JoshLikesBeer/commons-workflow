@@ -19,8 +19,7 @@ package org.apache.commons.workflow.core;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import org.apache.commons.jxpath.JXPathContext;
+
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.Descriptor;
 import org.apache.commons.workflow.StepException;
@@ -135,6 +134,7 @@ public class InvokeStep extends DescriptorStep {
      *
      * @exception StepException if a processing error has occurred
      */
+    @SuppressWarnings("rawtypes")
     public void execute(Context context) throws StepException {
 
         // Identify the object on whom a method is to be invoked
@@ -147,7 +147,7 @@ public class InvokeStep extends DescriptorStep {
             throw new StepException("No object bean on which to invoke",
                                     this);
 
-        // Assembe arrays of parameter types and values
+        // Assemble arrays of parameter types and values
         Class types[] = new Class[descriptors.length - 1];
         Object values[] = new Object[descriptors.length - 1];
         for (int i = 1; i < descriptors.length; i++) {
@@ -224,6 +224,7 @@ public class InvokeStep extends DescriptorStep {
      * @param name Method name to search for
      * @param types Parameter types to search for
      */
+    @SuppressWarnings("rawtypes")
     protected Method findMethod(Object bean, String name, Class types[]) {
 
         try {
@@ -241,6 +242,7 @@ public class InvokeStep extends DescriptorStep {
      * @param name Method name
      * @param types Parameter types
      */
+    @SuppressWarnings("rawtypes")
     protected String signature(String name, Class types[]) {
 
         StringBuffer sb = new StringBuffer(name);

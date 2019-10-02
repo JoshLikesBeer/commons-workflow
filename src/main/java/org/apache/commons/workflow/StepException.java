@@ -32,6 +32,11 @@ public class StepException extends WorkflowException {
 
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1067940106985619477L;
+
+	/**
      * Construct an empty StepException.
      */
     public StepException() {

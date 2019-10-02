@@ -19,11 +19,10 @@ package org.apache.commons.workflow.base;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
-import org.apache.commons.workflow.Activity;
+
 import org.apache.commons.workflow.Block;
 import org.apache.commons.workflow.BlockState;
 import org.apache.commons.workflow.Context;
-import org.apache.commons.workflow.Owner;
 import org.apache.commons.workflow.Step;
 import org.apache.commons.workflow.StepException;
 
@@ -157,7 +156,7 @@ public abstract class BaseBlock extends DescriptorStep implements Block {
      */
     public Step[] getSteps() {
 
-        ArrayList list = new ArrayList();
+        ArrayList<Step> list = new ArrayList<>();
         Step currentStep = firstStep;
         while (currentStep != null) {
             list.add(currentStep);
@@ -166,7 +165,7 @@ public abstract class BaseBlock extends DescriptorStep implements Block {
             currentStep = currentStep.getNextStep();
         }
         Step steps[] = new Step[list.size()];
-        return ((Step[]) list.toArray(steps));
+        return list.toArray(steps);
 
     }
 

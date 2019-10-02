@@ -18,12 +18,9 @@ package org.apache.commons.workflow.base;
 
 
 import java.util.ArrayList;
-import org.apache.commons.workflow.Activity;
-import org.apache.commons.workflow.Context;
+
 import org.apache.commons.workflow.Descriptor;
 import org.apache.commons.workflow.Descriptors;
-import org.apache.commons.workflow.Step;
-import org.apache.commons.workflow.StepException;
 
 
 /**
@@ -46,7 +43,7 @@ public abstract class DescriptorStep extends BaseStep implements Descriptors {
      * The list of <code>Descriptor</code> objects associated with this
      * <code>Step</code>.
      */
-    protected ArrayList descriptors = new ArrayList();
+    protected ArrayList<Descriptor> descriptors = new ArrayList<>();
 
 
     // --------------------------------------------------------- Public Methods
@@ -72,7 +69,7 @@ public abstract class DescriptorStep extends BaseStep implements Descriptors {
     public Descriptor[] findDescriptors() {
 
         Descriptor results[] = new Descriptor[descriptors.size()];
-        return ((Descriptor[]) descriptors.toArray(results));
+        return descriptors.toArray(results);
 
     }
 

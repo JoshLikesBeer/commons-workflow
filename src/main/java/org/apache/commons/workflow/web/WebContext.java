@@ -17,13 +17,11 @@
 package org.apache.commons.workflow.web;
 
 
-import java.util.EmptyStackException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.collections.ArrayStack;
-import org.apache.commons.workflow.Context;
+
 import org.apache.commons.workflow.Scope;
 import org.apache.commons.workflow.base.BaseContext;
 

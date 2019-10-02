@@ -36,6 +36,11 @@ public class ScopeEvent extends EventObject {
 
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8408711282696067905L;
+
+	/**
      * Construct a new immutable ScopeEvent.
      *
      * @param scope Scope in which this event occurred

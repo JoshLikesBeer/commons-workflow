@@ -36,6 +36,11 @@ public class ContextEvent extends EventObject {
 
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8255713121269239355L;
+
+	/**
      * Construct a new immutable ContextEvent.
      *
      * @param context Context in which this event occurred

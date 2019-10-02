@@ -19,22 +19,20 @@ package org.apache.commons.workflow.io;
 
 
 import java.io.File;
-import java.util.EmptyStackException;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+
 import org.apache.commons.workflow.Activity;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.ContextEvent;
 import org.apache.commons.workflow.ContextListener;
-import org.apache.commons.workflow.Scope;
-import org.apache.commons.workflow.Step;
 import org.apache.commons.workflow.StepException;
 import org.apache.commons.workflow.base.BaseActivity;
 import org.apache.commons.workflow.base.BaseContext;
-import org.apache.commons.workflow.base.BaseScope;
 import org.apache.commons.workflow.core.PopStep;
 import org.apache.commons.workflow.core.StringStep;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 
 /**

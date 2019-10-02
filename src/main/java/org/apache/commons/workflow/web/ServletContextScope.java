@@ -21,10 +21,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
 import javax.servlet.ServletContext;
+
 import org.apache.commons.workflow.base.BaseScope;
 import org.apache.commons.workflow.util.MapEntry;
 
@@ -95,16 +96,16 @@ public class ServletContextScope extends BaseScope {
     public void clear() {
 
         // Accumulate a list of the elements to be cleared
-        Enumeration names = servletContext.getAttributeNames();
-        ArrayList list = new ArrayList();
+        Enumeration<String> names = servletContext.getAttributeNames();
+        ArrayList<String> list = new ArrayList<>();
         while (names.hasMoreElements()) {
-            list.add((String) names.nextElement());
+            list.add(names.nextElement());
         }
 
         // Erase the accumulated elements
         int n = list.size();
         for (int i = 0; i < n; i++) {
-            servletContext.removeAttribute((String) list.get(i));
+            servletContext.removeAttribute(list.get(i));
         }
         support.fireScopeCleared();
 
@@ -131,9 +132,9 @@ public class ServletContextScope extends BaseScope {
     public boolean containsValue(Object value) {
 
         // Check all existing attributes for a match
-        Enumeration names = servletContext.getAttributeNames();
+        Enumeration<String> names = servletContext.getAttributeNames();
         while (names.hasMoreElements()) {
-            String name = (String) names.nextElement();
+            String name = names.nextElement();
             if (value.equals(servletContext.getAttribute(name)))
                 return (true);
         }
@@ -145,13 +146,13 @@ public class ServletContextScope extends BaseScope {
     /**
      * Return a set view of the mappings contained in this map.
      */
-    public Set entrySet() {
+    public Set<Map.Entry<String, Object>> entrySet() {
 
-        HashSet results = new HashSet();
-        Enumeration names = servletContext.getAttributeNames();
+        HashSet<Map.Entry<String, Object>> results = new HashSet<>();
+        Enumeration<String> names = servletContext.getAttributeNames();
         while (names.hasMoreElements()) {
-            String name = (String) names.nextElement();
-            results.add(new MapEntry(name, servletContext.getAttribute(name)));
+            String name = names.nextElement();
+            results.add(new MapEntry<String, Object>(name, servletContext.getAttribute(name)));
         }
         return (results);
 
@@ -210,7 +211,7 @@ public class ServletContextScope extends BaseScope {
     public boolean isEmpty() {
 
         // Check all existing attributes
-        Enumeration names = servletContext.getAttributeNames();
+        Enumeration<String> names = servletContext.getAttributeNames();
         while (names.hasMoreElements())
             return (true);
         return (false);
@@ -221,27 +222,13 @@ public class ServletContextScope extends BaseScope {
     /**
      * Return a set view of the keys contained in this map.
      */
-    public Set keySet() {
+    public Set<String> keySet() {
 
-        HashSet results = new HashSet();
-        Enumeration names = servletContext.getAttributeNames();
+        HashSet<String> results = new HashSet<>();
+        Enumeration<String> names = servletContext.getAttributeNames();
         while (names.hasMoreElements())
             results.add(names.nextElement());
         return (results);
-
-    }
-
-
-    /**
-     * Add or replace the bean associated with the specified key.
-     *
-     * @param key Key with which the new value should be associated
-     *  (cannot be null)
-     * @param bean Bean to be associated with this key (cannot be null)
-     */
-    public Object put(Object key, Object bean) {
-
-        return (put((String) key, bean));
 
     }
 
@@ -280,24 +267,6 @@ public class ServletContextScope extends BaseScope {
         }
         return (old);
             
-    }
-
-
-    /**
-     * Copy all of the mappings from the specified map into this map,
-     * firing appropriate <code>beanAdded()</code> and
-     * <code>beanReplaced()</code> events along the way.
-     *
-     * @param in Map whose contents are to be added
-     */
-    public void putAll(Map in) {
-
-        Iterator keys = in.keySet().iterator();
-        while (keys.hasNext()) {
-            Object key = keys.next();
-            put(key, in.get(key));
-        }
-
     }
 
 
@@ -342,7 +311,7 @@ public class ServletContextScope extends BaseScope {
      */
     public int size() {
 
-        Enumeration names = servletContext.getAttributeNames();
+        Enumeration<String> names = servletContext.getAttributeNames();
         int n = 0;
         while (names.hasMoreElements()) {
             n++;
@@ -355,12 +324,12 @@ public class ServletContextScope extends BaseScope {
     /**
      * Return a Collection view of the values contained in this map.
      */
-    public Collection values() {
+    public Collection<Object> values() {
 
-        ArrayList results = new ArrayList();
-        Enumeration names = servletContext.getAttributeNames();
+        ArrayList<Object> results = new ArrayList<>();
+        Enumeration<String> names = servletContext.getAttributeNames();
         while (names.hasMoreElements()) {
-            String name = (String) names.nextElement();
+            String name = names.nextElement();
             results.add(servletContext.getAttribute(name));
         }
         return (results);

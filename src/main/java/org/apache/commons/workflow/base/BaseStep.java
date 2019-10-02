@@ -17,7 +17,6 @@
 package org.apache.commons.workflow.base;
 
 
-import org.apache.commons.workflow.Activity;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.Owner;
 import org.apache.commons.workflow.Step;

@@ -18,22 +18,21 @@
 package org.apache.commons.workflow.core;
 
 
-import java.util.EmptyStackException;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import org.apache.commons.workflow.Activity;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.ContextEvent;
 import org.apache.commons.workflow.ContextListener;
 import org.apache.commons.workflow.Scope;
-import org.apache.commons.workflow.Step;
 import org.apache.commons.workflow.StepException;
 import org.apache.commons.workflow.base.BaseActivity;
 import org.apache.commons.workflow.base.BaseContext;
 import org.apache.commons.workflow.base.BaseDescriptor;
 import org.apache.commons.workflow.base.BaseScope;
 import org.apache.commons.workflow.base.Employee;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 
 /**
@@ -220,7 +219,7 @@ public class CoreExecuteTestCase extends TestCase
     public void testConstructor() {
 
         // Configure the steps in this activity
-        context.push(new Integer(54321));         // Second argument
+        context.push(54321);         // Second argument
         context.push("Constructor String");       // First argument
         activity.addStep
             (new LoadStep("01", "org.apache.commons.workflow.core.TestBean"));
@@ -246,7 +245,8 @@ public class CoreExecuteTestCase extends TestCase
                        context.getSuspend());
             assertTrue("Top object is a Class",
                        context.peek() instanceof java.lang.Class);
-            Class clazz = (Class) context.peek();
+            @SuppressWarnings("rawtypes")
+				Class clazz = (Class) context.peek();
             assertEquals("Top object is the correct Class",
                          "org.apache.commons.workflow.core.TestBean",
                          clazz.getName());

@@ -17,14 +17,11 @@
 package org.apache.commons.workflow.core;
 
 
-import java.util.EmptyStackException;
-import org.apache.commons.workflow.Block;
 import org.apache.commons.workflow.BlockState;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.Descriptor;
 import org.apache.commons.workflow.Iterator;
 import org.apache.commons.workflow.Step;
-import org.apache.commons.workflow.StepException;
 import org.apache.commons.workflow.base.BaseBlock;
 
 

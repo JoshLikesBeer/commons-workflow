@@ -73,6 +73,7 @@ public class PopStep extends BaseStep {
     public void execute(Context context) throws StepException {
 
         // Pop the evaluation stack
+        @SuppressWarnings("unused")
         Object value = null;
         try {
             value = context.pop();

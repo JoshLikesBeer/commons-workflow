@@ -171,14 +171,14 @@ public class BaseActivity implements Activity {
      */
     public Step[] getSteps() {
 
-        ArrayList list = new ArrayList();
+        ArrayList<Step> list = new ArrayList<>();
         Step currentStep = firstStep;
         while (currentStep != null) {
             list.add(currentStep);
             currentStep = currentStep.getNextStep();
         }
         Step steps[] = new Step[list.size()];
-        return ((Step[]) list.toArray(steps));
+        return list.toArray(steps);
 
     }
 

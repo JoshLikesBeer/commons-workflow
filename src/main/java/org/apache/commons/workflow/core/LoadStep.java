@@ -145,6 +145,7 @@ public class LoadStep extends BaseStep {
      *
      * @exception StepException if a processing error has occurred
      */
+    @SuppressWarnings("rawtypes")
     public void execute(Context context) throws StepException {
 
         // Acquire the class loader we will be using

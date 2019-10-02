@@ -18,6 +18,7 @@ package org.apache.commons.workflow.base;
 
 
 import java.util.HashMap;
+
 import org.apache.commons.workflow.Activity;
 import org.apache.commons.workflow.Registry;
 
@@ -40,7 +41,7 @@ public class BaseRegistry implements Registry {
      * The set of Activity instances registered with this Registry, keyed
      * by identifier.
      */
-    protected HashMap activities = new HashMap();
+    protected HashMap<String, Activity> activities = new HashMap<>();
 
 
     // ------------------------------------------------------------- Properties
@@ -80,7 +81,7 @@ public class BaseRegistry implements Registry {
     public Activity[] findActivities() {
 
         Activity results[] = new Activity[activities.size()];
-        return ((Activity[]) activities.values().toArray(results));
+        return activities.values().toArray(results);
 
     }
 
@@ -93,7 +94,7 @@ public class BaseRegistry implements Registry {
      */
     public Activity findActivity(String id) {
 
-        return ((Activity) activities.get(id));
+        return activities.get(id);
 
     }
 

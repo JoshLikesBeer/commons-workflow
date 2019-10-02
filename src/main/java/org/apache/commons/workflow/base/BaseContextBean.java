@@ -17,9 +17,8 @@
 package org.apache.commons.workflow.base;
 
 
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.workflow.Context;
+import org.apache.commons.workflow.Scope;
 
 
 /**
@@ -31,14 +30,12 @@ public class BaseContextBean {
 
     private BaseContext baseContext = null;
 
-    private HashMap scopes = null;
-
     public BaseContextBean(BaseContext baseContext) {
         super();
         this.baseContext = baseContext;
     }
 
-    public Map getLocal() {
+    public Scope getLocal() {
         return (baseContext.getScope(Context.LOCAL_SCOPE));
     }
 

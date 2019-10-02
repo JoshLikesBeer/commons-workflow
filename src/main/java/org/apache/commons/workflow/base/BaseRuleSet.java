@@ -19,8 +19,6 @@ package org.apache.commons.workflow.base;
 
 
 import org.apache.commons.digester3.Digester;
-import org.apache.commons.digester3.Rule;
-import org.apache.commons.digester3.RuleSet;
 import org.apache.commons.digester3.RuleSetBase;
 
 

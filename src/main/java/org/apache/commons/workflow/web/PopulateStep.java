@@ -19,7 +19,9 @@ package org.apache.commons.workflow.web;
 
 import java.util.Enumeration;
 import java.util.HashMap;
+
 import javax.servlet.ServletRequest;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.Descriptor;
@@ -103,8 +105,8 @@ public class PopulateStep extends DescriptorStep {
 
         // Prepare a Map of our request parameter names and values
         // (in Servlet 2.3 we would just call request.getParameterMap())
-        HashMap map = new HashMap();
-        Enumeration names = request.getParameterNames();
+        HashMap<String, String[]> map = new HashMap<>();
+        Enumeration<String> names = request.getParameterNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
             map.put(name, request.getParameterValues(name));

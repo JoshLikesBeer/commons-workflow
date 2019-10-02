@@ -17,19 +17,19 @@
 package org.apache.commons.workflow.base;
 
 
+import java.util.ArrayDeque;
 import java.util.EmptyStackException;
-import org.apache.commons.collections.ArrayStack;
+
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.workflow.Activity;
 import org.apache.commons.workflow.Block;
 import org.apache.commons.workflow.BlockState;
 import org.apache.commons.workflow.Context;
-import org.apache.commons.workflow.ContextEvent;
 import org.apache.commons.workflow.ContextListener;
 import org.apache.commons.workflow.Owner;
+import org.apache.commons.workflow.Scope;
 import org.apache.commons.workflow.Step;
 import org.apache.commons.workflow.StepException;
-import org.apache.commons.workflow.Scope;
 import org.apache.commons.workflow.util.ContextSupport;
 
 
@@ -86,7 +86,7 @@ public class BaseContext implements Context {
      * The suspended "next step" Step for each in-progress Activity that has
      * issued a <code>call()</code> to execute a subordinate Activity.
      */
-    protected ArrayStack calls = new ArrayStack();
+    protected ArrayDeque<Step> calls = new ArrayDeque<>();
 
 
     /**
@@ -115,13 +115,13 @@ public class BaseContext implements Context {
     /**
      * The evaluation stack of nameless objects being processed.
      */
-    protected ArrayStack stack = new ArrayStack();
+    protected ArrayDeque<Object> stack = new ArrayDeque<>();
 
 
     /**
      * The BlockState stack of BlockState objects used to manage iteration.
      */
-    protected ArrayStack state = new ArrayStack();
+    protected ArrayDeque<BlockState> state = new ArrayDeque<>();
 
 
     /**
@@ -418,7 +418,7 @@ public class BaseContext implements Context {
      */
     public boolean isEmpty() {
 
-        return (stack.size() == 0);
+        return stack.isEmpty();
 
     }
 
@@ -429,7 +429,8 @@ public class BaseContext implements Context {
      * @exception EmptyStackException if the stack is empty
      */
     public Object peek() throws EmptyStackException {
-
+   	 if (stack.isEmpty())
+   		 throw new EmptyStackException();
         return (stack.peek());
 
     }
@@ -441,7 +442,8 @@ public class BaseContext implements Context {
      * @exception EmptyStackException if the stack is empty
      */
     public Object pop() throws EmptyStackException {
-
+   	 if (stack.isEmpty())
+   		 throw new EmptyStackException();
         return (stack.pop());
 
     }
@@ -477,7 +479,7 @@ public class BaseContext implements Context {
      */
     public boolean isEmptyBlockState() {
 
-        return (state.size() == 0);
+        return state.isEmpty();
 
     }
 
@@ -488,8 +490,9 @@ public class BaseContext implements Context {
      * @exception EmptyStackException if the stack is empty
      */
     public BlockState peekBlockState() throws EmptyStackException {
-
-        return ((BlockState) state.peek());
+   	 if (state.isEmpty())
+   		 throw new EmptyStackException();
+        return state.peek();
 
     }
 
@@ -500,8 +503,9 @@ public class BaseContext implements Context {
      * @exception EmptyStackException if the stack is empty
      */
     public BlockState popBlockState() throws EmptyStackException {
-
-        return ((BlockState) state.pop());
+   	 if (state.isEmpty())
+   		 throw new EmptyStackException();
+        return state.pop();
 
     }
 
@@ -592,12 +596,12 @@ public class BaseContext implements Context {
             if (nextStep == null) {
 
                 // If there are no active calls, we are done
-                if (calls.empty())
+                if (calls.isEmpty())
                     break;
 
                 // If there are active calls, resume the most recent one
                 try {
-                    nextStep = (Step) calls.pop();
+                    nextStep = calls.pop();
                     Owner owner = nextStep.getOwner();
                     while (!(owner instanceof Activity)) {
                         owner = ((Step) owner).getOwner();
@@ -658,7 +662,7 @@ public class BaseContext implements Context {
     public Step[] getCalls() {
 
         Step steps[] = new Step[calls.size()];
-        return ((Step[]) calls.toArray(steps));
+        return calls.toArray(steps);
 
     }
 

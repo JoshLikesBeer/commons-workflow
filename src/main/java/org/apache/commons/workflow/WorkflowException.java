@@ -32,6 +32,11 @@ public class WorkflowException extends Exception {
 
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2556339896135071133L;
+
+	/**
      * Construct an empty WorkflowException.
      */
     public WorkflowException() {

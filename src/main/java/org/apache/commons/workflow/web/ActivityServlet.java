@@ -17,26 +17,24 @@
 package org.apache.commons.workflow.web;
 
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.digester3.Digester;
 import org.apache.commons.workflow.Activity;
-import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.ContextEvent;
 import org.apache.commons.workflow.ContextListener;
-import org.apache.commons.workflow.Step;
 import org.apache.commons.workflow.StepException;
 import org.apache.commons.workflow.base.BaseRuleSet;
 import org.apache.commons.workflow.core.CoreRuleSet;
 import org.apache.commons.workflow.io.IoRuleSet;
-import org.apache.commons.workflow.web.WebContext;
-import org.apache.commons.workflow.web.WebRuleSet;
 
 
 /**
@@ -69,7 +67,13 @@ import org.apache.commons.workflow.web.WebRuleSet;
 public class ActivityServlet extends HttpServlet implements ContextListener {
 
 
-    // ----------------------------------------------------- Instance Variables
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4448171498119032579L;
+
+
+	// ----------------------------------------------------- Instance Variables
 
 
     /**
@@ -94,6 +98,7 @@ public class ActivityServlet extends HttpServlet implements ContextListener {
     /**
      * The debugging detail level for our Digester.
      */
+    @SuppressWarnings("unused")
     private int detail = 0;
 
 

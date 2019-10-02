@@ -18,24 +18,17 @@
 package org.apache.commons.workflow.core;
 
 
-import java.util.EmptyStackException;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import org.apache.commons.workflow.Activity;
-import org.apache.commons.workflow.Block;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.ContextEvent;
 import org.apache.commons.workflow.ContextListener;
-import org.apache.commons.workflow.Descriptor;
-import org.apache.commons.workflow.Scope;
-import org.apache.commons.workflow.Step;
-import org.apache.commons.workflow.StepException;
 import org.apache.commons.workflow.base.BaseActivity;
 import org.apache.commons.workflow.base.BaseContext;
 import org.apache.commons.workflow.base.BaseDescriptor;
-import org.apache.commons.workflow.base.BaseScope;
-import org.apache.commons.workflow.base.Employee;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 
 /**
@@ -130,7 +123,7 @@ public class CoreBlockTestCase extends TestCase
     /**
      * Test "IfStep".
      */
-    public void testIf() {
+    public void testIf() throws Exception {
 
         // Configure the steps of this activity, which will assume
         // that two boolean values have been pushed onto the evaluation
@@ -154,7 +147,7 @@ public class CoreBlockTestCase extends TestCase
     /**
      * Test "IfAnyStep".
      */
-    public void testIfAny() {
+    public void testIfAny() throws Exception {
 
         // Configure the steps of this activity, which will assume
         // that two boolean values have been pushed onto the evaluation
@@ -178,7 +171,7 @@ public class CoreBlockTestCase extends TestCase
     /**
      * Test "IfNotStep".
      */
-    public void testIfNot() {
+    public void testIfNot() throws Exception {
 
         // Configure the steps of this activity, which will assume
         // that two boolean values have been pushed onto the evaluation
@@ -202,7 +195,7 @@ public class CoreBlockTestCase extends TestCase
     /**
      * Test "IfNotAnyStep".
      */
-    public void testIfNotAny() {
+    public void testIfNotAny() throws Exception {
 
         // Configure the steps of this activity, which will assume
         // that two boolean values have been pushed onto the evaluation
@@ -234,71 +227,57 @@ public class CoreBlockTestCase extends TestCase
      * @param second Second boolean parameter
      * @param result Should the nested block be executed?
      */
-    private void commonIfTest(boolean first, boolean second, boolean result) {
+    private void commonIfTest(boolean first, boolean second, boolean result) throws Exception {
 
-        try {
-
-            // Set up the execution environment
-            context.clear();
-            context.clearBlockState();
-            context.push(new Boolean(second));
-            context.push(new Boolean(first));
-
-            // Execute the requested activity
-            context.execute();
-
-            // Validate the results
-            if (result) {
-                assertEquals("Executed nested step",
-                             "beforeActivity()/" +
-                             "beforeStep(01)/afterStep(01)/" +
-                             "beforeStep(02)/afterStep(02)/" +
-                             "beforeStep(01)/afterStep(01)/" +
-                             "beforeStep(03)/afterStep(03)/" +
-                             "afterActivity()/",
-                             trail.toString());
-            } else {
-                assertEquals("Skipped nested step",
-                             "beforeActivity()/" +
-                             "beforeStep(01)/afterStep(01)/" +
-                             "beforeStep(03)/afterStep(03)/" +
-                             "afterActivity()/",
-                             trail.toString());
-            }
-            assertTrue("Context is not suspended",
-                       !context.getSuspend());
-            assertTrue("Evaluation Stack is not empty",
-                       !context.isEmpty());
-            assertTrue("BlockState Stack is empty",
-                       context.isEmptyBlockState());
-            Object top = context.pop();
-            assertTrue("Completed message is a String",
-                       top instanceof String);
-            assertEquals("Completed message is correct",
-                         "If Completed", (String) top);
-            if (result) {
-                assertTrue("Evaluation Stack is not empty",
-                           !context.isEmpty());
-                top = context.pop();
-                assertTrue("Executed message is a String",
-                           top instanceof String);
-                assertEquals("Executed message is correct",
-                             "If Executed", (String) top);
-            }
-            assertTrue("Evaluation Stack is empty",
-                       context.isEmpty());
-        } catch (StepException e) {
-            e.printStackTrace(System.out);
-            if (e.getCause() != null) {
-                System.out.println("ROOT CAUSE");
-                e.getCause().printStackTrace(System.out);
-            }
-            fail("Threw StepException " + e);
-        } catch (Throwable t) {
-            t.printStackTrace(System.out);
-            fail("Threw Exception " + t);
-        }
-
+   	 // Set up the execution environment
+   	 context.clear();
+   	 context.clearBlockState();
+   	 context.push(second);
+   	 context.push(first);
+   	 
+   	 // Execute the requested activity
+   	 context.execute();
+   	 
+   	 // Validate the results
+   	 if (result) {
+   		 assertEquals("Executed nested step",
+   				 "beforeActivity()/" +
+   						 "beforeStep(01)/afterStep(01)/" +
+   						 "beforeStep(02)/afterStep(02)/" +
+   						 "beforeStep(01)/afterStep(01)/" +
+   						 "beforeStep(03)/afterStep(03)/" +
+   						 "afterActivity()/",
+   						 trail.toString());
+   	 } else {
+   		 assertEquals("Skipped nested step",
+   				 "beforeActivity()/" +
+   						 "beforeStep(01)/afterStep(01)/" +
+   						 "beforeStep(03)/afterStep(03)/" +
+   						 "afterActivity()/",
+   						 trail.toString());
+   	 }
+   	 assertTrue("Context is not suspended",
+   			 !context.getSuspend());
+   	 assertTrue("Evaluation Stack is not empty",
+   			 !context.isEmpty());
+   	 assertTrue("BlockState Stack is empty",
+   			 context.isEmptyBlockState());
+   	 Object top = context.pop();
+   	 assertTrue("Completed message is a String",
+   			 top instanceof String);
+   	 assertEquals("Completed message is correct",
+   			 "If Completed", (String) top);
+   	 if (result) {
+   		 assertTrue("Evaluation Stack is not empty",
+   				 !context.isEmpty());
+   		 top = context.pop();
+   		 assertTrue("Executed message is a String",
+   				 top instanceof String);
+   		 assertEquals("Executed message is correct",
+   				 "If Executed", (String) top);
+   	 }
+   	 assertTrue("Evaluation Stack is empty",
+   			 context.isEmpty());
     }
 
 

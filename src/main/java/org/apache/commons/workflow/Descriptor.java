@@ -75,7 +75,7 @@ public interface Descriptor {
     /**
      * Return the optional Java class expected by this Descriptor.
      */
-    public Class getType();
+    public Class<Object> getType();
 
 
     /**
@@ -83,7 +83,7 @@ public interface Descriptor {
      *
      * @param type The new expected type
      */
-    public void setType(Class type);
+    public void setType(Class<Object> type);
 
 
     /**

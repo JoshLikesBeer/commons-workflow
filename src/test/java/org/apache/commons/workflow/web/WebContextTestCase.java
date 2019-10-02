@@ -18,13 +18,10 @@
 package org.apache.commons.workflow.web;
 
 
-import java.util.EmptyStackException;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import org.apache.commons.workflow.Context;
-import org.apache.commons.workflow.Scope;
 import org.apache.commons.workflow.base.BaseContextTestCase;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
 
 /**

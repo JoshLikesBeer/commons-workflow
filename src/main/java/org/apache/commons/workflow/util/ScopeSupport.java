@@ -17,7 +17,6 @@
 package org.apache.commons.workflow.util;
 
 
-import java.util.Map;
 import org.apache.commons.workflow.Scope;
 import org.apache.commons.workflow.ScopeEvent;
 import org.apache.commons.workflow.ScopeListener;

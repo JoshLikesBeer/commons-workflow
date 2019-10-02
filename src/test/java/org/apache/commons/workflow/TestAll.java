@@ -16,18 +16,17 @@
 
 package org.apache.commons.workflow;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
 import org.apache.commons.workflow.base.BaseActivityTestCase;
 import org.apache.commons.workflow.base.BaseContextTestCase;
 import org.apache.commons.workflow.base.BaseExecuteTestCase;
 import org.apache.commons.workflow.core.CoreBlockTestCase;
 import org.apache.commons.workflow.core.CoreExecuteTestCase;
-import org.apache.commons.workflow.io.IOExecuteTestCase;
 import org.apache.commons.workflow.web.WebContextTestCase;
 import org.apache.commons.workflow.web.WebExecuteTestCase;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 /**
  * Tests for org.apache.commons.workflow

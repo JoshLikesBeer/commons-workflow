@@ -94,14 +94,15 @@ public class ConstructStep extends DescriptorStep {
      *
      * @exception StepException if a processing error has occurred
      */
-    public void execute(Context context) throws StepException {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public void execute(Context context) throws StepException {
 
         // Identify the Class object to be used for object construction
         Descriptor descriptors[] = findDescriptors();
         if (descriptors.length < 1)
             throw new StepException
                 ("No descriptor for Class to construct", this);
-        Class clazz = null;
+        Class<Object> clazz = null;
         try {
             clazz = (Class) descriptors[0].get(context);
             if (clazz == null)
@@ -182,7 +183,8 @@ public class ConstructStep extends DescriptorStep {
      * @param name Method name
      * @param types Parameter types
      */
-    protected String signature(String name, Class types[]) {
+    @SuppressWarnings("rawtypes")
+	protected String signature(String name, Class types[]) {
 
         StringBuffer sb = new StringBuffer(name);
         sb.append('(');

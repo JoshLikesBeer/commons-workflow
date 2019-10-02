@@ -17,7 +17,6 @@
 package org.apache.commons.workflow.core;
 
 
-import java.util.EmptyStackException;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.StepException;
 import org.apache.commons.workflow.base.BaseStep;

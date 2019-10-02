@@ -18,13 +18,12 @@
 package org.apache.commons.workflow.base;
 
 
-import java.util.EmptyStackException;
+import org.apache.commons.workflow.Activity;
+import org.apache.commons.workflow.Step;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.commons.workflow.Activity;
-import org.apache.commons.workflow.Scope;
-import org.apache.commons.workflow.Step;
 
 
 /**

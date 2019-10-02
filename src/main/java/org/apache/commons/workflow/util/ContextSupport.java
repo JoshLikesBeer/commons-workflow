@@ -17,7 +17,6 @@
 package org.apache.commons.workflow.util;
 
 
-import java.util.Map;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.ContextEvent;
 import org.apache.commons.workflow.ContextListener;

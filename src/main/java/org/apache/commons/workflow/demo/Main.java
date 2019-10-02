@@ -18,6 +18,7 @@ package org.apache.commons.workflow.demo;
 
 
 import java.io.File;
+
 import org.apache.commons.digester3.Digester;
 import org.apache.commons.workflow.Activity;
 import org.apache.commons.workflow.Context;
@@ -27,7 +28,6 @@ import org.apache.commons.workflow.base.BaseContext;
 import org.apache.commons.workflow.base.BaseRuleSet;
 import org.apache.commons.workflow.core.CoreRuleSet;
 import org.apache.commons.workflow.io.IoRuleSet;
-import org.apache.commons.workflow.web.WebRuleSet;
 
 
 /**

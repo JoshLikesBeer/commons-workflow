@@ -29,7 +29,7 @@ import java.util.Map;
  * @author Craig R. McClanahan
  */
 
-public class MapEntry implements Map.Entry {
+public class MapEntry<K, V> implements Map.Entry<K, V> {
 
 
     // ----------------------------------------------------------- Constructors
@@ -41,7 +41,7 @@ public class MapEntry implements Map.Entry {
      * @param key Key for this entry
      * @param value Value for this entry
      */
-    public MapEntry(Object key, Object value) {
+    public MapEntry(K key, V value) {
 
         super();
         setKey(key);
@@ -57,13 +57,13 @@ public class MapEntry implements Map.Entry {
     /**
      * The key for this entry.
      */
-    protected Object key = null;
+    protected K key = null;
 
-    public Object getKey() {
+    public K getKey() {
         return (this.key);
     }
 
-    public void setKey(Object key) {
+    public void setKey(K key) {
         this.key = key;
     }
 
@@ -71,14 +71,14 @@ public class MapEntry implements Map.Entry {
     /**
      * The value for for this entry.
      */
-    protected Object value = null;
+    protected V value = null;
 
-    public Object getValue() {
+    public V getValue() {
         return (this.value);
     }
 
-    public Object setValue(Object value) {
-        Object old = this.value;
+    public V setValue(V value) {
+        V old = this.value;
         this.value = value;
         return (old);
     }
