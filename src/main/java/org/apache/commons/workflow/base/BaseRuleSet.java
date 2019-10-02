@@ -18,10 +18,10 @@
 package org.apache.commons.workflow.base;
 
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.digester.Rule;
-import org.apache.commons.digester.RuleSet;
-import org.apache.commons.digester.RuleSetBase;
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.digester3.Rule;
+import org.apache.commons.digester3.RuleSet;
+import org.apache.commons.digester3.RuleSetBase;
 
 
 /**
@@ -54,23 +54,11 @@ public class BaseRuleSet extends RuleSetBase {
      */
     public BaseRuleSet() {
 
-        super();
-        setNamespaceURI("http://commons.apache.org/workflow/base");
+        super("http://commons.apache.org/workflow/base");
 
     }
-
-
-    // ------------------------------------------------------------- Properties
-
-
-    /**
-     * Set the namespace URI that these rules apply to.  This is only needed
-     * if you want to reset the default value created by a subclass.
-     *
-     * @param namespaceURI The new namespace URI
-     */
-    public void setNamespaceURI(String namespaceURI) {
-        this.namespaceURI = namespaceURI;
+    public BaseRuleSet(String namespaceURI) {
+   	 super(namespaceURI);
     }
 
 

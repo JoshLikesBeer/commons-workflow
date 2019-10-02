@@ -18,7 +18,7 @@ package org.apache.commons.workflow.demo;
 
 
 import java.io.File;
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.apache.commons.workflow.Activity;
 import org.apache.commons.workflow.Context;
 import org.apache.commons.workflow.ContextEvent;

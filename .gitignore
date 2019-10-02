@@ -1,0 +1,15 @@
+**/.idea
+**/.project
+**/.classpath
+**/.gradle
+**/build
+**/.settings
+**/bin
+**/sandbox
+**/.attach_pid*
+**/.pydevproject
+**/*.tgz
+**/*.tar.gz
+**/*.deb
+**/*.changes
+**/*.log

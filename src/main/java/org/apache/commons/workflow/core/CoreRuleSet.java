@@ -18,7 +18,7 @@
 package org.apache.commons.workflow.core;
 
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.apache.commons.workflow.base.BaseRuleSet;
 
 
@@ -46,8 +46,7 @@ public class CoreRuleSet extends BaseRuleSet {
      */
     public CoreRuleSet() {
 
-        super();
-        setNamespaceURI("http://commons.apache.org/workflow/core");
+        super("http://commons.apache.org/workflow/core");
 
     }
 

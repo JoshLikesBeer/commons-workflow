@@ -135,7 +135,7 @@ public class IOExecuteTestCase extends TestCase
     public void testGetDisplay() {
 
         // Identify the URL path we will be accessing
-        String url = System.getProperty("ioexecute.url");
+        String url = "https://google.com/"; //System.getProperty("ioexecute.url");
         assertNotNull("The 'ioexecute.url' system property is set", url);
 
         // Configure the steps in this activity

@@ -15,26 +15,26 @@
  */
 
 
-package org.apache.commons.workflow.web;
+package org.apache.commons.workflow.io;
 
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.apache.commons.workflow.base.BaseRuleSet;
 
 
 /**
  * <p><strong>RuleSet</strong> for the Step definitions supported by the
- * <em>web</em> library.  This library is normally associated with the
+ * <em>io</em> library.  This library is normally associated with the
  * following namespace URI:</p>
  * <pre>
- *   http://commons.apache.org/workflow/web
+ *   http://commons.apache.org/workflow/io
  * </pre>
  *
  * @author Craig R. McClanahan
  * @version $Revision$ $Date$
  */
 
-public class WebRuleSet extends BaseRuleSet {
+public class IoRuleSet extends BaseRuleSet {
 
 
     // ------------------------------------------------------------ Constructor
@@ -43,10 +43,9 @@ public class WebRuleSet extends BaseRuleSet {
     /**
      * Construct a default instance of the <code>RuleSet</code>.
      */
-    public WebRuleSet() {
+    public IoRuleSet() {
 
-        super();
-        setNamespaceURI("http://commons.apache.org/workflow/web");
+        super("http://commons.apache.org/workflow/io");
 
     }
 
@@ -66,37 +65,19 @@ public class WebRuleSet extends BaseRuleSet {
     public void addRuleInstances(Digester digester) {
 
         // Add rules for each Step defined in this package
-        addStandardStep(digester, "forward",
-                        "org.apache.commons.workflow.web.ForwardStep");
-        addStandardStep(digester, "goto",
-                        "org.apache.commons.workflow.web.GotoStep");
-        if (isServlet23()) {
-            addStandardStep(digester, "include",
-                            "org.apache.commons.workflow.web.IncludeStep23");
-        }
-        addStandardStep(digester, "populate",
-                        "org.apache.commons.workflow.web.PopulateStep");
+        addStandardStep(digester, "display",
+                        "org.apache.commons.workflow.io.DisplayStep");
+        addStandardStep(digester, "get",
+                        "org.apache.commons.workflow.io.GetStep");
+        addStandardStep(digester, "peek",
+                        "org.apache.commons.workflow.io.PeekStep");
+        addStandardStep(digester, "read",
+                        "org.apache.commons.workflow.io.ReadStep");
+        addStandardStep(digester, "write",
+                        "org.apache.commons.workflow.io.WriteStep");
 
         // Add rules for all variations on descriptors being matched
         addStandardDescriptor(digester, "descriptor");   // Standard version
-
-    }
-
-
-    // ------------------------------------------------------ Protected Methods
-
-
-    /**
-     * Are we executing in a Servlet 2.3 (or later) environment?
-     */
-    protected boolean isServlet23() {
-
-        try {
-            Class.forName("javax.servlet.Filter");  // 2.3-or-later class
-            return (true);
-        } catch (ClassNotFoundException e) {
-            return (false);
-        }
 
     }
 
